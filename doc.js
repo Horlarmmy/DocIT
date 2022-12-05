@@ -1,10 +1,16 @@
 import { NFTStorage } from "https://cdn.jsdelivr.net/npm/nft.storage/dist/bundle.esm.min.js";
 const endpoint = 'https://api.nft.storage'
-const ContractAddress = "";
+const ContractAddress = "0x4611e6355F91348040089AEEDc06314204E3df4E";
 const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweDdjMTVkRTM4NUU0Mzc1M0RBODNGZUE0NjgzZkZhMzc4RTFjZTUyZjEiLCJpc3MiOiJuZnQtc3RvcmFnZSIsImlhdCI6MTY2ODk3NjUxMTc3NCwibmFtZSI6IkRvY1QifQ.t7bF1OuxuS6S9QMP_rfl72fYMneOa1jzs-mZhdjEhog";
 
 var file;
 var docs = [];
+
+const abi = [
+    "function addDoc(string memory uri) public returns (uint256)",
+    "function getdocuments() public view returns(string[] memory)",
+    "function sendDoc(address _receiver, uint256 tokenId)"
+]
 
 var file_url;
 const handleChange = async(e) => {
@@ -14,15 +20,15 @@ document.getElementById("file")?.addEventListener("change", () => handleChange()
 
 const getContract = async() => {
     if (window.ethereum) {
-        await window.ethereum.enable(); // Enable the Ethereum client
-        provider = new ethers.providers.Web3Provider(window.ethereum); // A connection to the Ethereum network
-        signer = provider.getSigner(); // Holds your private key and can sign things
-        current_address = await signer.getAddress(); // Set the current address
-        DoctContract = new ethers.Contract(
+        const provider = new ethers.providers.Web3Provider(window.ethereum); // A connection to the Ethereum network
+        var signer = await provider.getSigner(); // Holds your private key and can sign things
+        var current_address = await signer.getAddress(); // Set the current address
+        const Contract = new ethers.Contract(
             ContractAddress,
           abi,
           signer
          );
+        return Contract;
       } else {
         alert("No wallet detected");
       }
@@ -31,7 +37,7 @@ const getContract = async() => {
 
 const addFile = async() => {
     if (file ) {
-    await getContract();
+    const DoctContract = await getContract();
     const storage = new NFTStorage({ endpoint, token });
     const doc_metadata = await storage.store({
         name: file.name,
@@ -39,9 +45,8 @@ const addFile = async() => {
         image: file
     });
     console.log(doc_metadata.url);
-    tx = await DoctContract.addDoc(doc_metadata.url);
-    await tx.wait()
-    file_url = doc_metadata.data.image.href;
+    var tx = await DoctContract.addDoc(doc_metadata.url);
+    await tx.wait();
     window.alert("Your file has been uploaded!!!");
     }
 
@@ -50,14 +55,20 @@ const addFile = async() => {
 let num = 1;
 const displayFile = async() => {
     if (window.ethereum) {
-        await getContract();
-        docs = await DoctContract.getgetdocuments();
+        const DoctContract = await getContract();
+        docs = await DoctContract.getdocuments();
             for (let i = 0; i < docs.length; i++) {
                 if (num < 7) {
+                const url_d = "https://ipfs.io/ipfs/" + docs[i].slice(6);
+                const doc_meta = fetch(url_d)
+                .then(function (response) {
+                    return  response.json();
+                });
                 const container = document.querySelector(".docs-s");
                 const docs_v = document.createElement("div");
-                console.log(docs[i])
-                docs_v.innerHTML = num + ". &emsp; " + docs[i] + " &emsp; &emsp; &emsp; <a href=/'" + file_url +"/'>View</a>";
+                console.log(doc_meta);
+                file_url = "https://ipfs.io/ipfs/" + doc_meta.image.slice(6);
+                docs_v.innerHTML = num + ". &emsp; " + doc_meta.name + " &emsp; &emsp; &emsp; <a href='" + file_url +"'>View</a> &emsp; &emsp; <a href=#>Send</a>";
                 container.append(docs_v);
                 num++;
                 }

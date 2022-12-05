@@ -15,20 +15,28 @@ contract Doct is ERC721, ERC721URIStorage, Ownable {
 
     constructor() ERC721("Doct", "DOCT") {}
 
-    function addDoc(string memory uri) public {
+    function addDoc(string memory uri) public returns (uint256) {
 	    user_docs[msg.sender].push(uri);
-        mint(msg.sender, uri);
+        uint256 res = mint(msg.sender, uri);
+        return res;
+    }
+
+    function sendDoc(address _receiver, uint256 tokenId) public {
+        safeTransferFrom(msg.sender, _receiver, tokenId);
+        string memory  docs = tokenURI(tokenId);
+        user_docs[_receiver].push(docs);
     }
 
     function getdocuments() public view returns(string[] memory) {
         return user_docs[msg.sender];
     }
 
-    function mint(address to, string memory uri) private {
+    function mint(address to, string memory uri) private returns (uint256) {
         uint256 tokenId = _tokenIdCounter.current();
         _tokenIdCounter.increment();
         _safeMint(to, tokenId);
         _setTokenURI(tokenId, uri);
+        return tokenId;
     }
 
     function _burn(uint256 tokenId) internal override(ERC721, ERC721URIStorage) {
