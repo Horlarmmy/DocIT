@@ -30,7 +30,7 @@ async function Connect() {
                                 symbol: 'MATIC',
                                 decimals: 18,
                             },
-                            rpcUrls: ['https://rpc-mumbai.maticvigil.com'],
+                            rpcUrls: ['https://polygon-testnet.public.blastapi.io','https://rpc.ankr.com/polygon_mumbai','https://rpc-mumbai.maticvigil.com'],
                         },
                     ],
                 });

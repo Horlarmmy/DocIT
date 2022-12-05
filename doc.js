@@ -59,8 +59,10 @@ const displayFile = async() => {
         docs = await DoctContract.getdocuments();
             for (let i = 0; i < docs.length; i++) {
                 if (num < 7) {
-                const url_d = "https://ipfs.io/ipfs/" + docs[i].slice(6);
-                const doc_meta = fetch(url_d)
+                console.log(docs[i]);
+                const url_d = "https://ipfs.io/ipfs/" + (docs[i]).slice(6);
+                console.log(url_d);
+                const doc_meta = await fetch(url_d)
                 .then(function (response) {
                     return  response.json();
                 });
