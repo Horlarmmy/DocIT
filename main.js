@@ -11,7 +11,7 @@ async function Connect() {
         try {
             window.ethereum.request({
                 method: 'wallet_switchEthereumChain',
-                params: [{ chainId: '0x257' }],
+                params: [{ chainId: '0x13881' }],
         });
             const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
             location.reload();
@@ -23,14 +23,14 @@ async function Connect() {
                     method: 'wallet_addEthereumChain',
                     params: [
                         {
-                            chainId: '0x257',
-                            chainName: 'Metis Goerli Testnet',
+                            chainId: '0x13881',
+                            chainName: 'Matic(Polygon) Mumbai Tesnet',
                             nativeCurrency: {
-                                name: 'Metis Goerli',
-                                symbol: 'METIS',
+                                name: 'tMATIC',
+                                symbol: 'MATIC',
                                 decimals: 18,
                             },
-                            rpcUrls: ['https://goerli.gateway.metisdevops.link'],
+                            rpcUrls: ['https://rpc-mumbai.maticvigil.com'],
                         },
                     ],
                 });

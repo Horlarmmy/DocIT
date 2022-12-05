@@ -67,7 +67,7 @@ const displayFile = async() => {
                 const container = document.querySelector(".docs-s");
                 const docs_v = document.createElement("div");
                 console.log(doc_meta);
-                file_url = "https://ipfs.io/ipfs/" + doc_meta.image.slice(6);
+                file_url = "https://ipfs.io/ipfs/" + (doc_meta.image).slice(6);
                 docs_v.innerHTML = num + ". &emsp; " + doc_meta.name + " &emsp; &emsp; &emsp; <a href='" + file_url +"'>View</a> &emsp; &emsp; <a href=#>Send</a>";
                 container.append(docs_v);
                 num++;
