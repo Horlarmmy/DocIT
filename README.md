@@ -22,7 +22,7 @@ Live link: https://doc-t.netlify.app/
 
 Contract Address: https://mumbai.polygonscan.com/address/0x4611e6355f91348040089aeedc06314204e3df4e
 
-Demo video: https://www.loom.com/share/38c7ada36e234d97a570502d9ddfd099?focus_title=1&muted=1&from_recorder=1
+Demo video: https://drive.google.com/file/d/1WXvuv9ty6NC5OrmWPqVR3sJ6WNnh7lFj/view?usp=drivesdk
 ## Dapp Architecture
 
 This is a short description of the architect and structure of our Dapp.
