@@ -8,18 +8,26 @@ const addr = document.getElementById("addr");
 
 async function Connect() {
     if(window.confirm("Are you sure you want to connect your wallet to DocT")){
+      let provider = window.ethereum;
+      if (window.ethereum.providers?.length) {
+        window.ethereum.providers.forEach(async (p) => {
+          if (p.isCoinbaseWallet) {
+            provider = p;
+          }
+        });
+      }
         try {
-            window.ethereum.request({
+            provider.request({
                 method: 'wallet_switchEthereumChain',
                 params: [{ chainId: '0x13881' }],
         });
-            const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+            const accounts = await provider.request({ method: 'eth_requestAccounts' });
             location.reload();
     } catch (switchError) {
         // This error code indicates that the chain has not been added to MetaMask.
         if (switchError.code === 4902) {
             try {
-                await window.ethereum.request({
+                await provider.request({
                     method: 'wallet_addEthereumChain',
                     params: [
                         {
@@ -64,7 +72,7 @@ ethereum
   function handleAccountsChanged(accounts) {
     if (accounts.length === 0) {
       // MetaMask is locked or the user has not connected any accounts
-      window.alert('Please connect to MetaMask.');
+      window.alert('Please connect your Coinbase Wallet.');
       hiding(connected);
 
     } else if (accounts[0] !== currentAccount) {
