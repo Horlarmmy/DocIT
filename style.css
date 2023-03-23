@@ -1,0 +1,63 @@
+body 
+{
+margin-top: 80px;
+margin-left: 50px;
+padding: 30px;
+background-size: cover;
+font-family: sans-serif;
+background-color: aquamarine;
+}
+header {
+background-color: blue;
+position: fixed;
+left: 0;
+right: 0;
+top: 5px;
+height: 30px;
+display: flex;
+align-items: center;
+}
+header * {
+display: inline;
+}
+header li {
+margin: 20px;
+}
+header li a {
+color: white;
+text-decoration: none;
+}
+
+form {
+    color: blue;
+    place-items: center;
+    margin-bottom: 100px;
+}
+
+button#btn-right {
+    float: right;
+}
+footer {
+    position: absolute;
+    bottom: 10px;
+    background-color: blue;
+    color: white;
+    text-align: center;
+    left: 0;
+    right: 0;
+    height: 20px;
+}
+.start {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.upload {
+    color: white;
+}
+
+.docs-b {
+    color: white;
+}
