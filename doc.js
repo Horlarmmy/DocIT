@@ -1,6 +1,6 @@
 import { NFTStorage } from "https://cdn.jsdelivr.net/npm/nft.storage/dist/bundle.esm.min.js";
 const endpoint = 'https://api.nft.storage'
-const ContractAddress = "0x8E82985eE184B5a90fea68F3329B247e33f36fE5";
+const ContractAddress = "0x02cEf89dfd0d2Cc33AAe154d28D237F26B53CF5e";
 const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweDdjMTVkRTM4NUU0Mzc1M0RBODNGZUE0NjgzZkZhMzc4RTFjZTUyZjEiLCJpc3MiOiJuZnQtc3RvcmFnZSIsImlhdCI6MTY2ODk3NjUxMTc3NCwibmFtZSI6IkRvY1QifQ.t7bF1OuxuS6S9QMP_rfl72fYMneOa1jzs-mZhdjEhog";
 
 var file;
