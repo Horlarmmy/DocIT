@@ -1,6 +1,6 @@
 import { NFTStorage } from "https://cdn.jsdelivr.net/npm/nft.storage/dist/bundle.esm.min.js";
 const endpoint = 'https://api.nft.storage'
-const ContractAddress = "0x02cEf89dfd0d2Cc33AAe154d28D237F26B53CF5e";
+const ContractAddress = "0xbeE78e505F7e36e1dBC37e2BE8C0Ae753478810B";
 const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweDdjMTVkRTM4NUU0Mzc1M0RBODNGZUE0NjgzZkZhMzc4RTFjZTUyZjEiLCJpc3MiOiJuZnQtc3RvcmFnZSIsImlhdCI6MTY2ODk3NjUxMTc3NCwibmFtZSI6IkRvY1QifQ.t7bF1OuxuS6S9QMP_rfl72fYMneOa1jzs-mZhdjEhog";
 
 var file;
@@ -61,14 +61,12 @@ const displayFile = async() => {
                 if (num < 7) {
                 console.log(docs[i]);
                 const url_d = "https://ipfs.io/ipfs/" + (docs[i]).slice(6);
-                console.log(url_d);
                 const doc_meta = await fetch(url_d)
                 .then(function (response) {
                     return  response.json();
                 });
                 const container = document.querySelector(".docs-s");
                 const docs_v = document.createElement("div");
-                console.log(doc_meta);
                 file_url = "https://ipfs.io/ipfs/" + (doc_meta.image).slice(6);
                 docs_v.innerHTML = num + ". &emsp; " + doc_meta.name + " &emsp; &emsp; &emsp; <a href='" + file_url +"'>View</a> &emsp; &emsp; <a href=#>Send</a>";
                 container.append(docs_v);
