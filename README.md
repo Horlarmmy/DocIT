@@ -22,7 +22,7 @@ Live link: https://doc-t.netlify.app/
 
 Contract Address: https://explorer.5ire.network/address/0xbeE78e505F7e36e1dBC37e2BE8C0Ae753478810B
 
-Demo video: 
+Demo video: https://youtu.be/8NuxF03Kiqg
 
 This is a short description of the architect and structure of our Dapp.
 
